@@ -1,0 +1,38 @@
+REMARK   1 CREATED WITH MDTraj 1.9.5, 2022-05-18
+CRYST1  112.267   52.583   44.535  90.00 102.95  90.00 P 1           1 
+MODEL        0
+ATOM   2384  N1  LIG A 404       7.330  -0.662  20.931  1.00  0.00           N  
+ATOM   2385  C4  LIG A 404      12.969   0.533  23.647  1.00  0.00           C  
+ATOM   2386  C5  LIG A 404      11.811   0.848  24.344  1.00  0.00           C  
+ATOM   2387  C6  LIG A 404      10.605   0.338  23.931  1.00  0.00           C  
+ATOM   2388  C7  LIG A 404       6.649   0.027  19.868  1.00  0.00           C  
+ATOM   2389  C8  LIG A 404       5.445   0.652  20.152  1.00  0.00           C  
+ATOM   2390  C10 LIG A 404       5.406   1.281  17.851  1.00  0.00           C  
+ATOM   2391  N   LIG A 404       9.279  -0.969  22.427  1.00  0.00           N  
+ATOM   2392  C   LIG A 404       8.639  -0.239  21.360  1.00  0.00           C  
+ATOM   2393  O   LIG A 404       9.192   0.679  20.850  1.00  0.00           O  
+ATOM   2394  C1  LIG A 404      10.566  -0.493  22.830  1.00  0.00           C  
+ATOM   2395  C11 LIG A 404       7.189   0.056  18.594  1.00  0.00           C  
+ATOM   2396  C2  LIG A 404      11.709  -0.808  22.121  1.00  0.00           C  
+ATOM   2397  C3  LIG A 404      12.922  -0.298  22.541  1.00  0.00           C  
+ATOM   2398  C9  LIG A 404       4.815   1.312  19.109  1.00  0.00           C  
+ATOM   2399  N2  LIG A 404       6.555   0.685  17.640  1.00  0.00           N  
+TER    2400      LIG A 404
+ENDMDL
+CONECT    1    5    9
+CONECT    2    3   14
+CONECT    3    2    4
+CONECT    4    3   11
+CONECT    5    1    6   12
+CONECT    6    5   15
+CONECT    7   15   16
+CONECT    8    9   11
+CONECT    9    1    8   10
+CONECT   10    9
+CONECT   11    4    8   13
+CONECT   12    5   16
+CONECT   13   11   14
+CONECT   14    2   13
+CONECT   15    6    7
+CONECT   16    7   12
+END

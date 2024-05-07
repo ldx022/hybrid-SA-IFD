@@ -1,0 +1,9 @@
+dockingMode=rigid
+parallelGrid=32
+parallelDock=1
+dockOutputPoses=20
+dockEnergyRange=normal
+parallelAntechamber=1
+parallelPrepareComplex=32
+parallelGetPDB=32
+

@@ -1,0 +1,2 @@
+Job_name,Receptor_file_name,Ligand_file_name,Ref_receptor_file_name,Ref_receptor_nolig_file_name,template_file,dockX,dockY,dockZ,nc
+5R83-K0G-to-5R84,Receptors/5R83-K0G-to-5R84/5R84_apo.pdb,Ligands/5R83-K0G-to-5R84/5R83_K0G_A.pdb,Ref_Receptors/5R83-K0G-to-5R84/5R83_holo.pdb,Ref_Receptors/5R83-K0G-to-5R84/5R83_holo_nolig.pdb,Ligands/5R83-K0G-to-5R84/5R84_lig_ref.pdb,9.078,-0.06,21.31,0
