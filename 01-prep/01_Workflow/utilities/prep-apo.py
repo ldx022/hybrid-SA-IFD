@@ -2,7 +2,6 @@ import os, sys
 apo = sys.argv[1]
 apo_cleand = sys.argv[2]
 with open(apo, 'r') as infile, open(apo_cleand, 'w') as outfile:
-    # 逐行读取
     for line in infile:
         if line.startswith(('ATOM', 'HETATM', 'END')):
             outfile.write(line)
