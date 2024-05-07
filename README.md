@@ -44,5 +44,16 @@ sh 01_batch_prepareComplex.sh
 sh 02_check_atom_num.sh
 sh 03_batch_getPDB.sh
 
+使用Fpocket来获取核心残基：(需要安装linux的pymol)
+Head into `01-prep/03_PrepProtein/5R83-K0G-to-5R84`
+fpocket -f apo_continue.pdb
+cd apo_continue_out
+@apo_continue.pml
+放入template ligand，Upon insertion of the template ligand, residues predicted by Fpocket whose spheres overlapped with or are in close proximity to the template ligand are designated as core residues, as demonstrated in Figure ，对于这个例子，总共有3个口袋分别是pocket3,pocket13,pocket23
+cd pockets
+cat pocket3_atm.pdb pocket13_atm.pdb pocket23_atm.pdb > pocket3-13-23.pdb
+python3 ../../../../01_Workflow/utilities/core-residue-fpocket.py pocket3-13-23.pdb > core_residue.txt
+core_residue.txt文件的末尾则输出了core residues：
+There are a total of 24 residues in the core pockets, and they are :25THR 26THR 27LEU 41HIE 44CYS 49MET 52PRO 54TYR 140PHE 141LEU 142ASN 143GLY 145CYS 163HIE 164HIE 165MET 166GLU 167LEU 168PRO 170GLY 187ASP 188ARG 189GLN 190THR
 
 Head into `02-sampling_plus_post-analysis/01_Workflow/` and do the following
