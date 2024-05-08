@@ -1,0 +1,17 @@
+title       = Steepest descent enrgy minimisation
+
+integrator  = steep
+emtol       = 1000.0
+emstep      = 0.01  
+nstenergy   = 500   
+nsteps      = 100000     
+
+nstlist         = 1         
+cutoff-scheme   = Verlet    
+ns_type         = grid      
+coulombtype     = PME       
+rcoulomb        = 1.2       
+rvdw            = 1.2       
+pbc             = xyz       
+DispCorr                 = EnerPres
+

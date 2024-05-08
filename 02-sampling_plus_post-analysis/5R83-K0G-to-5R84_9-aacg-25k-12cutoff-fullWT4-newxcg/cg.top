@@ -1,0 +1,20 @@
+#include "topol_nonbonded.itp"
+
+#include "topol_CM1.itp"
+; Include Position restraint file
+#ifdef POSRES
+#include "../posre.itp"
+#endif
+#include "topol_NaW.itp"
+#include "topol_WT4.itp"
+
+[ system ]
+;name                                                                           
+Default Title                                                                   
+
+[ molecules ]
+;compound  nmols     
+CM1        1         
+NaW        4         
+WT4        1208      
+

@@ -1,0 +1,64 @@
+#!/bin/bash
+
+#BSUB -q gpu
+#BSUB -o openmm-gpu.out
+#BSUB -e openmm-gpu.err
+#BSUB -J openmm-gpu-351-399
+#BSUB -n 8
+#BSUB -R "span[ptile=8]"
+##BSUB -m g004
+
+#export CUDA_VISIBLE_DEVICES=3
+#INPUT_NAME=combined
+# choose CUDA (0,1,2,3)# 
+#export CUDA_VISIBLE_DEVICES=1,2，
+
+#--- LSF ---
+echo job runs at the following node:
+echo $LSB_HOSTS 
+NP=$(echo $LSB_HOSTS | awk '{print NF}')
+NNODE=$(echo $LSB_HOSTS | sed -e "s/ /\n/g" | uniq - | wc -l)
+echo ""
+echo Number of processor: $NP
+
+NP2=$((NP%8))
+
+if [ $NP2 -ne 0 ]; then
+  echo NP only can be 8, 16, 24 or 32
+  exit
+fi
+
+echo 0 > gpu-info-1
+for lineNum in {1..3}
+do
+  echo $lineNum >> gpu-info-1
+done
+/usr/bin/nvidia-smi | awk '/Default/{print $(NF-2)}' | sed 's/\%//' > gpu-info-2
+
+paste gpu-info-1 gpu-info-2 > gpu-info
+awk '$2==0{print $1}' gpu-info > free-card
+
+ncard=$((NP/4))
+export CUDA_VISIBLE_DEVICES="$(cat free-card | awk 'NR<ncard{printf"%s,",$1};NR==ncard{printf"%s\n",$1}' ncard=$ncard)"
+echo $CUDA_VISIBLE_DEVICES
+
+rm -rf gpu-info* free-card
+
+
+ulimit -s unlimited
+
+#if [ $NGPU -eq 1 ]; then
+for i in {351..399}
+do
+  if [ -d "$i" ]; then
+      echo "Enter directory $i"
+      cd "$i"
+      python3 12-2openmm_min1-gpu.py
+      cd ..
+  else
+    echo "directory $i does not exist"
+  fi
+done
+
+
+echo $(date)

@@ -55,5 +55,43 @@ cat pocket3_atm.pdb pocket13_atm.pdb pocket23_atm.pdb > pocket3-13-23.pdb
 python3 ../../../../01_Workflow/utilities/core-residue-fpocket.py pocket3-13-23.pdb > core_residue.txt
 core_residue.txt文件的末尾则输出了core residues：
 There are a total of 24 residues in the core pockets, and they are :25THR 26THR 27LEU 41HIE 44CYS 49MET 52PRO 54TYR 140PHE 141LEU 142ASN 143GLY 145CYS 163HIE 164HIE 165MET 166GLU 167LEU 168PRO 170GLY 187ASP 188ARG 189GLN 190THR
+将这个信息写入到02-sampling_plus_post-analysis\02_Input\aacg_job_description.csv的core_residue那一栏中
 
-Head into `02-sampling_plus_post-analysis/01_Workflow/` and do the following
+Head into `02-sampling_plus_post-analysis/` and 进行采样
+AA/UA/CG modeling 的建模工具以及所需脚本需要请联系作者
+当前提供的是该case已经建模好的初始结构，1-20分别代表第1-20个刚性对接的初始结构，0表示template protein以及target ligand构成的复合物。
+
+对每一个刚性对接结构执行模拟退火，运行所需的mdp文件分别为em.mdp以及nvt.mdp，posre.itp为main chain atoms forming secondary structures in the AA and UA regions需要再高温下进行限制防止蛋白的二级结构被破坏
+
+For each pose, 5 independent, 能量最小化以及25 rounds simulated annealing for each trajectory, were performed, saving snapshots every 1150 ps.
+
+sh 0analysis-ie.sh
+python3 1-label-ie.py
+python3 2-sort-according2ie.py
+python3 3-select-top500.py
+python3 4.prep-cluster-traj.py
+sh 5.gmxcat-genpdb.sh
+python3 6.extract-top500pdb.py
+python3 7.remove-boxinfo.py
+python3 8.convert_uaname2aa.py
+python3 9.aacg2aa.py
+python3 10.separate-model.py
+python3 11.copy-mol2-frcmod.py
+
+python3 14.sum_minimized_pdb.py
+python3 15.separate-pro-lig.py
+obabel -ipdb lig.pdb -O lig.sdf
+python3 16a.extract_pocket.py
+python3 16b.process_failed_pocket.py
+python3 17-1.separate-pairs.py
+python3 17-2.rtmscore4all.py
+
+python3 18.modified_total_out.py
+python3 19-summary.py
+sh 20.execute.sh
+python3 21-rank_holo_pocket_cluster.py
+ using extract_pdb_from_total_openmm.py to extract the AA model.
+
+
+
+
