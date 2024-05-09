@@ -1,0 +1,2 @@
+Job_name,Receptor_file_name,Ligand_file_name,k,cutoff,aacg_parameter,solvent,pose_number,SA_control,core_residue,core_num,time_per_round,time_step(fs)
+5R83-K0G-to-5R84,Receptors/5R83-K0G-to-5R84/5R84_apo.pdb,Ligands/5R83-K0G-to-5R84/5R83_K0G_A.pdb,25,12,25k-12cutoff,fullWT4,0-20,600K_heat-1.0-cool-2.0-2fs,25THR 26THR 27LEU 41HIE 44CYS 49MET 52PRO 54TYR 140PHE 141LEU 142ASN 143GLY 145CYS 163HIE 164HIE 165MET 166GLU 167LEU 168PRO 170GLY 187ASP 188ARG 189GLN 190THR,24/304,1150,2
