@@ -92,6 +92,7 @@ sh 20.execute.sh
 python3 21-rank_holo_pocket_cluster.py
  using extract_pdb_from_total_openmm.py to extract the AA model.
 
+output见zenodo
 
 
-
+参考文献记得附上rtmscore
