@@ -55,6 +55,9 @@ Open pymol and enter the following command:
 @apo_continue.pml
 ```
 On insertion of the template ligand, residues predicted by Fpocket whose spheres overlapped with or are in close proximity to the template ligand are designated as core residues, as demonstrated in the following Figure. For this example, there are a total of 3 pockets respectively. It’s pocket3, pocket13, pocket23
+<div align=center>
+<img src='./fpocket.png' width='600',height="300px">
+</div> 
 ```bash
 cd pockets
 cat pocket3_atm.pdb pocket13_atm.pdb pocket23_atm.pdb > pocket3-13-23.pdb
