@@ -71,7 +71,7 @@ At the end of the `core_residue.txt` file, core residues are output:
 Write this information into the `core_residue` column of `02-sampling_plus_post-analysis\02_Input\aacg_job_description.csv`
 Head into `02-sampling_plus_post-analysis/` and perform simulated annealing MD sampling:
 
-AA/UA/CG modeling tools and required scripts are available from the corresponding authors upon reasonable request.(`ywzhang@nnu.edu.cn` `ldxin54@stu.xmu.edu.cn`) 
+AA/UA/CG modeling tools and required scripts are available from the corresponding authors upon reasonable request.(`ywzhang@nnu.edu.cn`) 
 What is currently provided here is the initial structure that has been modeled to AA/UA/CG model for this case.
 1-20 represents the initial structure of the 1-20th rigid docking respectively, and 0 represents the complex composed of template protein and target ligand. The mdp files required for dynamic simulation are `em.mdp` and `nvt.mdp`. The function of `posre.itp` is to restrict main chain atoms forming secondary structures in the AA and UA regions to prevent the secondary structure of the protein from being destroyed in high temperature environments.
 
