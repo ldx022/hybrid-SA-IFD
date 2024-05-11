@@ -20,6 +20,7 @@ Fpocket==4.1
 RTMScore's environment
 prody==2.1.0
 AmberTools(tleap/antechamber/cpptraj)
+GROMACS==2022.5(GPU)
 
 ## Usage
 The workflow is divided into 2 stages. The sampling stage and the post-analysis stage.
@@ -58,26 +59,30 @@ On insertion of the template ligand, residues predicted by Fpocket whose spheres
 <div align=center>
 <img src='./fpocket.png' width='600',height="300px">
 </div> 
+
 ```bash
 cd pockets
 cat pocket3_atm.pdb pocket13_atm.pdb pocket23_atm.pdb > pocket3-13-23.pdb
 python3 ../../../../01_Workflow/utilities/core-residue-fpocket.py pocket3-13-23.pdb > core_residue.txt
 ```
-core_residue.txt文件的末尾则输出了core residues：
-There are a total of 24 residues in the core pockets, and they are :25THR 26THR 27LEU 41HIE 44CYS 49MET 52PRO 54TYR 140PHE 141LEU 142ASN 143GLY 145CYS 163HIE 164HIE 165MET 166GLU 167LEU 168PRO 170GLY 187ASP 188ARG 189GLN 190THR
+At the end of the `core_residue.txt` file, core residues are output:
+`There are a total of 24 residues in the core pockets, and they are :25THR 26THR 27LEU 41HIE 44CYS 49MET 52PRO 54TYR 140PHE 141LEU 142ASN 143GLY 145CYS 163HIE 164HIE 165MET 166GLU 167LEU 168PRO 170GLY 187ASP 188ARG 189GLN 190THR`
 
+Write this information into the `core_residue` column of `02-sampling_plus_post-analysis\02_Input\aacg_job_description.csv`
+Head into `02-sampling_plus_post-analysis/` and perform simulated annealing MD sampling:
 
+AA/UA/CG modeling tools and required scripts are available from the corresponding authors upon reasonable request.(`ywzhang@nnu.edu.cn` `ldxin54@stu.xmu.edu.cn`) 
+What is currently provided here is the initial structure that has been modeled to AA/UA/CG model for this case.
+1-20 represents the initial structure of the 1-20th rigid docking respectively, and 0 represents the complex composed of template protein and target ligand. The mdp files required for dynamic simulation are `em.mdp` and `nvt.mdp`. The function of `posre.itp` is to restrict main chain atoms forming secondary structures in the AA and UA regions to prevent the secondary structure of the protein from being destroyed in high temperature environments.
 
-将这个信息写入到02-sampling_plus_post-analysis\02_Input\aacg_job_description.csv的core_residue那一栏中
+Then performing simulated annealing on each rigid docking structure.
 
-Head into `02-sampling_plus_post-analysis/` and 进行采样
-AA/UA/CG modeling 的建模工具以及所需脚本需要请联系作者
-当前提供的是该case已经建模好的初始结构，1-20分别代表第1-20个刚性对接的初始结构，0表示template protein以及target ligand构成的复合物。
+For each pose, 5 independent, energy minimization and 25 rounds simulated annealing for each trajectory, were performed, saving snapshots every 1150 ps.
 
-对每一个刚性对接结构执行模拟退火，运行所需的mdp文件分别为em.mdp以及nvt.mdp，posre.itp为main chain atoms forming secondary structures in the AA and UA regions需要再高温下进行限制防止蛋白的二级结构被破坏
-
-For each pose, 5 independent, 能量最小化以及25 rounds simulated annealing for each trajectory, were performed, saving snapshots every 1150 ps.
-LSF
+All dynamics simulations are done on the cluster. Each trajectory using a single GPU core `RTX3090`
+### 2.post-analysis stage
+Analyze the resulting trajectories:
+```bash
 sh 0analysis-ie.sh
 python3 1-label-ie.py
 python3 2-sort-according2ie.py
@@ -90,7 +95,7 @@ python3 8.convert_uaname2aa.py
 python3 9.aacg2aa.py
 python3 10.separate-model.py
 python3 11.copy-mol2-frcmod.py
-
+sh 13-parellel.sh
 python3 14.sum_minimized_pdb.py
 python3 15.separate-pro-lig.py
 obabel -ipdb lig.pdb -O lig.sdf
@@ -98,14 +103,19 @@ python3 16a.extract_pocket.py
 python3 16b.process_failed_pocket.py
 python3 17-1.separate-pairs.py
 python3 17-2.rtmscore4all.py
-
 python3 18.modified_total_out.py
 python3 19-summary.py
 sh 20.execute.sh
 python3 21-rank_holo_pocket_cluster.py
- using extract_pdb_from_total_openmm.py to extract the AA model.
+```
+Finally, users can use the `extract_pdb_from_total_openmm.py` script to extract the AA model based on the ` 21_holo_pocket_rank_sort.txt`.
+```bash
+python3 extract_pdb_from_total_openmm.py 
+```
+means to extract the 113th model.
+### Output
+For the output of the entire process, please see zenodo
 
-output见zenodo
-
-
-参考文献记得附上rtmscore
+## Reference
+- Shen, C.; Zhang, X.; Deng, Y.; Gao, J.; Wang, D.; Xu, L.; Pan, P.; Hou, T.; Kang, Y., J. Med. Chem. 2022, 65 (15), 10691–10706.
+[Boosting Protein–Ligand Binding Pose Prediction and Virtual Screening Based on Residue–Atom Distance Likelihood Potential and Graph Transformer](https://pubs.acs.org/doi/10.1021/acs.jmedchem.2c00991)
