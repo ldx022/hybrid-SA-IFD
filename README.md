@@ -3,24 +3,24 @@
 hybrid-SA-IFD,also refers to AA/UA/CG-SA-IFD, is a workflow to refine docked poses through enhanced sampling by employing the hybrid All-Atom/United-Atom/Coarse-Grained(AA/UA/CG) model. 
 
 ## Requirements
-biopython==1.81
-mdtraj==1.9.9
-numpy==1.23.5
-oddt==0.7
-openbabel==3.1.1
-openmm==8.0.0
-pandas==2.0.3
-parmed==3.4.3
-python==3.8.18
-rdkit==2023.03.3
-spyrmsd==0.6.0
-vina==1.2.3
-mdanalysis==2.0.0
-Fpocket==4.1
-RTMScore's environment
-prody==2.1.0
-AmberTools(tleap/antechamber/cpptraj)
-GROMACS==2022.5(GPU)
+biopython==1.81  
+mdtraj==1.9.9  
+numpy==1.23.5  
+oddt==0.7  
+openbabel==3.1.1  
+openmm==8.0.0  
+pandas==2.0.3  
+parmed==3.4.3  
+python==3.8.18  
+rdkit==2023.03.3  
+spyrmsd==0.6.0  
+vina==1.2.3  
+mdanalysis==2.0.0  
+Fpocket==4.1  
+prody==2.1.0  
+RTMScore's environment  
+AmberTools(tleap/antechamber/cpptraj)  
+GROMACS==2022.5(GPU)  
 
 ## Usage
 The workflow is divided into 2 stages. The sampling stage and the post-analysis stage.
