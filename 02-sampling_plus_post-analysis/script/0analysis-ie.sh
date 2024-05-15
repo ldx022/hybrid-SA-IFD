@@ -49,7 +49,7 @@ for i in {1..20}; do
             python3 align-xtc.py
             )&
         else
-            echo "文件夹不存在: $system_folder"
+            echo "Folder does not exist: $system_folder"
         fi
     done
 done    
