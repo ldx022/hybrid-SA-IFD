@@ -110,7 +110,7 @@ python3 21-rank_holo_pocket_cluster.py
 ```
 Finally, users can use the `extract_pdb_from_total_openmm.py` script to extract the AA model based on the ` 21_holo_pocket_rank_sort.txt`.
 ```bash
-python3 extract_pdb_from_total_openmm.py 
+python3 extract_pdb_from_total_openmm.py 113
 ```
 means to extract the 113th model.
 ### Output
