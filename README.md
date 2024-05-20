@@ -114,7 +114,7 @@ python3 extract_pdb_from_total_openmm.py 113
 ```
 means to extract the 113th model.
 ### Output
-For the output of the entire process, please see zenodo
+For the output of the entire process, please see zenodo(10.5281/zenodo.11084549)
 
 ## Reference
 - Shen, C.; Zhang, X.; Deng, Y.; Gao, J.; Wang, D.; Xu, L.; Pan, P.; Hou, T.; Kang, Y., J. Med. Chem. 2022, 65 (15), 10691–10706.
