@@ -117,5 +117,7 @@ means to extract the 113th model.
 For the output of the entire process, please see zenodo(10.5281/zenodo.11084549)
 
 ## Reference
+- Dexin Lu, Ding Luo, Yuwen Zhang*, and Binju Wang*, Journal of Chemical Theory and Computation, 2024.
+[A Robust Induced Fit Docking Approach with the Combination of the Hybrid All-Atom/United-Atom/Coarse-Grained Model and Simulated Annealing](https://pubs.acs.org/doi/10.1021/acs.jctc.4c00653)
 - Shen, C.; Zhang, X.; Deng, Y.; Gao, J.; Wang, D.; Xu, L.; Pan, P.; Hou, T.; Kang, Y., J. Med. Chem. 2022, 65 (15), 10691–10706.
 [Boosting Protein–Ligand Binding Pose Prediction and Virtual Screening Based on Residue–Atom Distance Likelihood Potential and Graph Transformer](https://pubs.acs.org/doi/10.1021/acs.jmedchem.2c00991)
